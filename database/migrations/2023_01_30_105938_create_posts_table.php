@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->index();
             $table->string('slug')->unique();
-            $table->string('description')->index();
+            $table->longText('description');  // index()
             $table->unsignedTinyInteger('status')->default(0);
             $table->string('post_type')->default('post');
 
