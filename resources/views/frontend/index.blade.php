@@ -6,7 +6,7 @@
             @forelse($posts as $post)
                 <article class="blog__post d-flex flex-wrap">
                     <div class="thumb">
-                        <a href="#">
+                        <a href="{{ route('frontend.posts.show', $post->slug) }}">
                             @if($post->media->count() > 0)
                                 <img src="{{ asset('assets/posts/' . $post->media->first()->file_name) }}" alt="{{ $post->title }}">
                             @else
@@ -15,7 +15,7 @@
                         </a>
                     </div>
                     <div class="content">
-                        <h4><a href="#">{{ $post->title }}</a></h4>
+                        <h4><a href="{{ route('frontend.posts.show', $post->slug) }}">{{ $post->title }}</a></h4>
                         <ul class="post__meta">
                             <li>Posts by : <a href="#" title="Posts by {{ $post->user->name }}">{{ $post->user->name }}</a></li>
                             <li class="post_separator">/</li>
@@ -23,7 +23,7 @@
                         </ul>
                         <p>{!! \Illuminate\Support\Str::limit($post->description, 145, '...') !!}</p>
                         <div class="blog__btn">
-                            <a href="#">read more</a>
+                            <a href="{{ route('frontend.posts.show', $post->slug) }}">read more</a>
                         </div>
 
                     </div>

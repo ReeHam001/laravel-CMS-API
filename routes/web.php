@@ -49,3 +49,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('password/reset', [Backend\Auth\ResetPasswordController::class, 'reset'])->name('admin.password.update');
 
 });
+
+
+
+Route::get('/{post}',     [IndexController::class, 'post_show'])->name('frontend.posts.show');
+Route::post('/{post}',    [IndexController::class, 'store_comment'])->name('frontend.posts.add_comment');
