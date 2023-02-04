@@ -37,22 +37,12 @@
                         <div class="blog-date-categori">
                             <ul>
                                 <li>{{ $post->created_at->format('M d, Y') }}</li>
-                                <li><a href="{{ route('frontend.author.posts', $post->user->username) }}" title="Posts by {{ $post->user->name }}" rel="author">{{ $post->user->name }}</a></li>
+                                <li><a href="#" title="Posts by {{ $post->user->name }}" rel="author">{{ $post->user->name }}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="post_content">
                         <p>{!! $post->description !!}</p>
-
-                        @if ($post->tags->count() > 0)
-                            <div class="post__meta">
-                                <span>Tags : </span>
-                                @foreach($post->tags as $tag)
-                                    <a href="{{ route('frontend.tag.posts', $tag->slug) }}" class="bg-info p-1"><span class="text-white">{{ $tag->name }}</span></a>
-                                @endforeach
-                            </div>
-                        @endif
-
                     </div>
                     <ul class="blog_meta">
                         <li><a href="#">{{ $post->approved_comments->count() }} comment(s)</a></li>
