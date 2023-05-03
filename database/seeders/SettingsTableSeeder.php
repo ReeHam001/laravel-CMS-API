@@ -15,7 +15,7 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        Setting::create(['display_name' => 'Site title', 'key' => 'site_title', 'value' => 'Bloggi System', 'type' => 'text', 'section' => 'general', 'ordering' => 1]);
+        Setting::create([ 'display_name' => 'Site title', 'key' => 'site_title', 'value' => 'Bloggi System', 'type' => 'text', 'section' => 'general', 'ordering' => 1]);
         Setting::create([ 'display_name' => 'Site Slogan', 'key' => 'site_slogan', 'value' => 'Amazing blog', 'details' => null, 'type' => 'text', 'section' => 'general', 'ordering' => 2]);
         Setting::create([ 'display_name' => 'Site Description', 'key' => 'site_description', 'value' => 'Bloggi Content management system', 'details' => null, 'type' => 'text', 'section' => 'general', 'ordering' => 3]);
         Setting::create([ 'display_name' => 'Site Keywords', 'key' => 'site_keywords', 'value' => 'Bloggi, blog, multi writer', 'details' => null, 'type' => 'text', 'section' => 'general', 'ordering' => 4]);

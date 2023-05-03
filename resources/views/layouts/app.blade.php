@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="userId" content="{{ auth()->check() ? auth()->id() : '' }}">
-    <meta name="google-site-verification" content="TnunRtMf8FvxqLPZTojf5-82qJaWhe-J5ahWbd69v3c" />
 
+    <meta name="google-site-verification" content="TnunRtMf8FvxqLPZTojf5-82qJaWhe-J5ahWbd69v3c" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="description" content="">
@@ -29,19 +30,21 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('frontend/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link href="{{ asset('frontend/js/bootstrap-fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet"
         type="text/css" />
 
     <!-- Modernizer js -->
+    <script src="{{ asset('frontend/js/vendor/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('frontend/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+
 
     @yield('style')
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
 </head>
 
 <body>
@@ -70,7 +73,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('frontend/js/plugins.js') }}"></script>
     <script src="{{ asset('frontend/js/active.js') }}"></script>
 
@@ -81,8 +83,9 @@
     <script src="{{ asset('frontend/js/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap-fileinput/themes/fa/theme.js') }}"></script>
 
-
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
+
+
     @yield('script')
 
 </body>

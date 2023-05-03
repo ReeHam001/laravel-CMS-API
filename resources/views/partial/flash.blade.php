@@ -6,6 +6,7 @@
         </button>
     </div>
 @endif
+
 @if (session('status'))
     <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-message">
         {{ session('status') }}
@@ -14,6 +15,7 @@
         </button>
     </div>
 @endif
+
 @if (session('resent'))
     <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-message">
         {{ __('A fresh verification link has been sent to your email address.') }}

@@ -17,7 +17,7 @@
                     <div class="content">
                         <h4><a href="{{ route('frontend.posts.show', $post->slug) }}">{{ $post->title }}</a></h4>
                         <ul class="post__meta">
-                            <li>Posts by : <a href="#" title="Posts by {{ $post->user->name }}">{{ $post->user->name }}</a></li>
+                            <li>Posts by : <a href="{{ route('frontend.author.posts', $post->user->username) }}" title="Posts by {{ $post->user->name }}">{{ $post->user->name }}</a></li>
                             <li class="post_separator">/</li>
                             <li>{{ $post->created_at->format('M d Y') }}</li>
                         </ul>
@@ -26,6 +26,16 @@
                             <a href="{{ route('frontend.posts.show', $post->slug) }}">read more</a>
                         </div>
 
+                        @if ($post->tags->count() > 0)
+                        <ul class="post__meta">
+                            <li>Tags : </li>
+                            @foreach($post->tags as $tag)
+                                <li><a href="{{ route('frontend.tag.posts', $tag->slug) }}"><span class="label label-info">{{ $tag->name }}</span></a></li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                    
                     </div>
                 </article>
             @empty

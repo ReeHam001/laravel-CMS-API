@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('title');
             $table->longText('message');
-            $table->unsignedTinyInteger('status')->default(0);
+            $table->unsignedTinyInteger('status')->default(0);   // مقروء - غير مقروء
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
 
+
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -16,7 +17,14 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import UserNotification from './components/UserNotification.vue';
+import AdminNotification from './components/AdminNotification.vue';
+
 app.component('example-component', ExampleComponent);
+app.component('user-notification', UserNotification);
+app.component('admin-notification', AdminNotification);
+
+
 
 /**
  * The following block of code may be used to automatically register your

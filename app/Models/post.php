@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
-class post extends Model
+class Post extends Model
 {
-
-    use Sluggable;
+    use Sluggable, SearchableTrait;
 
     protected $guarded = [];
 
@@ -16,14 +16,36 @@ class post extends Model
     {
         return [
             'slug' => [
-                'source' => 'title',
-            ],
+                'source' => 'title'
+            ]
         ];
     }
+
+    protected $searchable = [
+        'columns'   => [
+            'posts.title'       => 10,
+            'posts.description' => 10,
+        ],
+    ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+    public function scopePost($query)
+    {
+        return $query->where('post_type', 'post');
+    }
+
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'posts_tags');
     }
 
     public function user()
@@ -36,6 +58,11 @@ class post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function approved_comments()
+    {
+        return $this->hasMany(Comment::class)->whereStatus(1);
+    }
+
     public function media()
     {
         return $this->hasMany(PostMedia::class);
@@ -45,4 +72,7 @@ class post extends Model
     {
         return $this->status == 1 ? 'Active' : 'Inactive';
     }
+
+
+
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //Passport::ignoreRoutes();
     }
 
     /**
@@ -24,9 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(!request()->is('admin/*')){
-            Paginator::defaultView('vendor.pagination.boighor');
-          }
-
+        Paginator::useBootstrap();
     }
 }

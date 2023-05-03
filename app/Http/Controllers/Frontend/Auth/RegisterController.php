@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
+
 
 
 class RegisterController extends Controller
@@ -23,7 +24,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -84,17 +85,25 @@ class RegisterController extends Controller
         ]);
 
         if (isset($data['user_image'])) {
-            if ($image = $data['user_image']){
+            if ($image = $data['user_image']) {
                 $filename = Str::slug($data['username']) . '.' . $image->getClientOriginalExtension();
-                $path = public_path('/assets/users/' . $filename);
-                Image::make($image->getRealPath())->resize(300, 300, function ($constraint) {  // getRealPath : get image from cash
-                    $constraint->aspectRatio();  // constraint  درجة الوضوح
-                })->save($path, 100);  // الوضوح 100 %
+                $path = public_path('assets/users/' . $filename);
+                Image::make($image->getRealPath())->resize(300, 300, function ($constraint) { // getRealPath : get image from cash
+                    $constraint->aspectRatio(); // constraint  درجة الوضوح
+                })->save($path, 100); // الوضوح 100 %
                 $user->update(['user_image' => $filename]);
             }
         }
 
         return $user;
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        return redirect()->route('frontend.index')->with([
+            'message' => 'Your account registered successfully, Please check your email to activate your account.',
+            'alert-type' => 'success',
+        ]);
     }
 
 }

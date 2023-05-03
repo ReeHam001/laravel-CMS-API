@@ -1,15 +1,12 @@
 <?php
 
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Mindscms\Entrust\EntrustPermission;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Permission extends EntrustPermission
 {
-    use HasFactory;
-
     protected $guarded = [];
 
     public function parent()
@@ -22,6 +19,11 @@ class Permission extends EntrustPermission
         return $this->hasMany(Permission::class, 'parent', 'id');
     }
 
+    public function appearedChildren()
+    {
+        return $this->hasMany(Permission::class, 'parent', 'id')->where('appear', 1);
+    }
+
     public static function tree($level = 1)
     {
         return static::with(implode('.', array_fill(0, $level, 'children')))
@@ -31,4 +33,19 @@ class Permission extends EntrustPermission
             ->orderBy('ordering', 'asc')
             ->get();
     }
+
+    public function assign_children()
+    {
+        return $this->hasMany(Permission::class, 'parent_original', 'id');
+    }
+
+    public static function assign_permissions($level = 1)
+    {
+        return static::with(implode('.', array_fill(0, $level, 'assign_children')))
+            ->whereParentOriginal(0)
+            ->whereAppear(1)
+            ->orderBy('ordering', 'asc')
+            ->get();
+    }
+
 }

@@ -27,7 +27,17 @@ class ConfirmPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo =  '/admin/index';
+    protected $redirectTo = '/admin/index';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function showConfirmForm()
     {
@@ -39,13 +49,4 @@ class ConfirmPasswordController extends Controller
         $request->session()->put('backend.auth.password_confirmed_at', time());
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 }

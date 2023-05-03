@@ -31,4 +31,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'facebook' => [
+        'client_id' => env('FB_ACCESS_CL_ID'),
+        'client_secret' => env('FB_ACCESS_SC_ID'),
+        'redirect' => 'https://bloggi.test/login/facebook/callback',
+    ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_ACCESS_CL_ID'),
+        'client_secret' => env('TWITTER_ACCESS_SC_ID'),
+        'redirect' => 'https://bloggi.test/login/twitter/callback',
+    ],
+
 ];
